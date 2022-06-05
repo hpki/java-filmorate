@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class ValidateFilmTest {
 
     class ValidateFilmDataTest {
-        static Film film = Film.builder()
+        Film film = Film.builder()
                 .id(1)
                 .name("Name1")
                 .description("Description1")
