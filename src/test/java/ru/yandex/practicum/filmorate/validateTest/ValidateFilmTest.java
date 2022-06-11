@@ -3,7 +3,7 @@ package ru.yandex.practicum.filmorate.validateTest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import ru.yandex.practicum.filmorate.model.Film;
-import ru.yandex.practicum.filmorate.validate.ValidateFilm;
+import ru.yandex.practicum.filmorate.validate.FilmValidator;
 import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -33,30 +33,30 @@ public class ValidateFilmTest {
         @Test
         public void emptyName() {
             film.setName("");
-            assertFalse(new ValidateFilm(film).checkAllData());
+            assertFalse(new FilmValidator(film).checkAllData());
         }
 
         @Test
         public void tooLongDescription() {
             film.setDescription(" ".repeat(201));
-            assertFalse(new ValidateFilm(film).checkAllData());
+            assertFalse(new FilmValidator(film).checkAllData());
         }
 
         @Test
         public void tooOldReleaseDate() {
             film.setReleaseDate(LocalDate.of(1894, 05, 21));
-            assertFalse(new ValidateFilm(film).checkAllData());
+            assertFalse(new FilmValidator(film).checkAllData());
         }
 
         @Test
         public void negativeDuration() {
             film.setDuration(-1);
-            assertFalse(new ValidateFilm(film).checkAllData());
+            assertFalse(new FilmValidator(film).checkAllData());
         }
 
         @Test
         public void correctAllData() {
-            assertTrue(new ValidateFilm(film).checkAllData());
+            assertTrue(new FilmValidator(film).checkAllData());
         }
     }
 }

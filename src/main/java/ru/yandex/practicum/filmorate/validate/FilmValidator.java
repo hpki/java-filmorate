@@ -6,17 +6,17 @@ import ru.yandex.practicum.filmorate.model.Film;
 import java.time.LocalDate;
 
 @Slf4j
-public class ValidateFilm {
+public class FilmValidator {
 
     private Film film;
     private static final int maxLengthDescription = 200;
     private static final LocalDate dateFirstFilm = LocalDate.of(1895, 12, 28);
 
-    public ValidateFilm(Film film) {
+    public FilmValidator(Film film) {
         this.film = film;
     }
 
-    public boolean checkName() {
+    private boolean checkName() {
         if (!film.getName().isBlank()) {
             return true;
         } else {
@@ -25,7 +25,7 @@ public class ValidateFilm {
         }
     }
 
-    public boolean checkLengthDescription() {
+    private boolean checkLengthDescription() {
         if (film.getDescription().length() <= maxLengthDescription) {
             return true;
         } else {
@@ -34,16 +34,16 @@ public class ValidateFilm {
         }
     }
 
-    public boolean checkReleaseDate() {
+    private boolean checkReleaseDate() {
         if (film.getReleaseDate().isAfter(dateFirstFilm)) {
             return true;
         } else {
-            log.warn("Ошибка ввода даты релиза. Релиз должен быть позже " + dateFirstFilm);
+            log.warn("Ошибка ввода даты релиза. Релиз должен быть позже {}", dateFirstFilm);
             return false;
         }
     }
 
-    public boolean checkDuration() {
+    private boolean checkDuration() {
         if (film.getDuration() > 0) {
             return true;
         } else {
@@ -53,11 +53,7 @@ public class ValidateFilm {
     }
 
     public boolean checkAllData() {
-        if(checkName() && checkLengthDescription() && checkReleaseDate() && checkDuration()) {
-            return true;
-        } else {
-            return false;
-        }
+        return (checkName() && checkLengthDescription() && checkReleaseDate() && checkDuration());
     }
 
 }

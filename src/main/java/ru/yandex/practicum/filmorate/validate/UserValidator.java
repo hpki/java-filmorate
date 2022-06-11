@@ -6,14 +6,14 @@ import ru.yandex.practicum.filmorate.model.User;
 import java.time.LocalDate;
 
 @Slf4j
-public class ValidateUser {
+public class UserValidator {
 
     private final User user;
-    public ValidateUser(User user) {
+    public UserValidator(User user) {
         this.user = user;
     }
 
-    public boolean checkEmail() {
+    private boolean checkEmail() {
         if (!user.getEmail().isEmpty() && user.getEmail().contains("@")) {
             return true;
         } else {
@@ -22,7 +22,7 @@ public class ValidateUser {
         }
     }
 
-    public boolean checkLogin() {
+    private boolean checkLogin() {
         if (!user.getLogin().isEmpty() && !user.getLogin().contains(" ")) {
             return true;
         } else {
@@ -31,7 +31,7 @@ public class ValidateUser {
         }
     }
 
-    public boolean checkBirthday() {
+    private boolean checkBirthday() {
         if(user.getBirthday().isBefore(LocalDate.now())) {
             return true;
         } else {
@@ -41,11 +41,7 @@ public class ValidateUser {
     }
 
     public boolean checkAllData() {
-        if (checkEmail() && checkLogin() && checkBirthday()) {
-            return true;
-        } else {
-            return false;
-        }
+        return (checkEmail() && checkLogin() && checkBirthday());
     }
 
 }

@@ -3,12 +3,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.yandex.practicum.filmorate.validate.ValidateFilm;
+import ru.yandex.practicum.filmorate.validate.FilmValidator;
 import ru.yandex.practicum.filmorate.exception.ValidationException;
 import ru.yandex.practicum.filmorate.model.Film;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class FilmController {
     @PostMapping("/films")
     @ResponseBody
     public ResponseEntity<Film> createFilm(@RequestBody Film film) {
-        if(new ValidateFilm(film).checkAllData()) {
+        if(new FilmValidator(film).checkAllData()) {
             log.info("Получен запрос к эндпоинту: POST /films");
             film.setId(getId());
             films.put(film.getId(), film);
@@ -42,7 +41,7 @@ public class FilmController {
     @PutMapping("/films")
     @ResponseBody
     public ResponseEntity<Film> update(@RequestBody Film film) {
-        if(new ValidateFilm(film).checkAllData() && film.getId() > 0) {
+        if(new FilmValidator(film).checkAllData() && film.getId() > 0) {
             log.info("Получен запрос к эндпоинту: PUT /films");
             films.put(film.getId(), film);
             return new ResponseEntity<>(film, HttpStatus.OK);
