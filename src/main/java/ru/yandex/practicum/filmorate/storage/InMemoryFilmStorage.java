@@ -16,8 +16,8 @@ import java.util.Map;
 @Slf4j
 @Component
 public class InMemoryFilmStorage implements FilmStorage {
-    private final int MAX_DESCRIPTION_SIZE = 200;
-    private final LocalDate FIRST_EVER_FILM = LocalDate.of(1895, 12, 28);
+    private final static int MAX_DESCRIPTION_SIZE = 200;
+    private final static LocalDate FIRST_EVER_FILM = LocalDate.of(1895, 12, 28);
     private final Map<Long, Film> films;
     private long idCounter;
 
