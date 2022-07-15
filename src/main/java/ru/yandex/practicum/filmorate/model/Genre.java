@@ -2,7 +2,7 @@ package ru.yandex.practicum.filmorate.model;
 
 import lombok.*;
 
-@Getter
+@Data
 @AllArgsConstructor
 @Builder
 public class Genre {
