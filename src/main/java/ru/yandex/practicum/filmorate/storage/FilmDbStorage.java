@@ -26,7 +26,7 @@ public class FilmDbStorage implements FilmStorage {
 
     @Override
     public Film add(Film film) {
-        String sqlQuery = "INSERT INTO films(name, description, release_date, duration, mpa_id)\n" +
+        final String sqlQuery = "INSERT INTO films(name, description, release_date, duration, mpa_id)\n" +
                 "VALUES (?, ?, ?, ?, ?)";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -47,7 +47,7 @@ public class FilmDbStorage implements FilmStorage {
 
     @Override
     public Film update(Film film) {
-        String sqlQuery = "UPDATE films\n" +
+         final String sqlQuery = "UPDATE films\n" +
                 "SET name= ?,\n" +
                 "    description = ?,\n" +
                 "    release_date = ?,\n" +
@@ -68,7 +68,7 @@ public class FilmDbStorage implements FilmStorage {
 
     @Override
     public List<Film> getFilms() {
-        String sqlQuery = "SELECT *\n" +
+        final String sqlQuery = "SELECT *\n" +
                 "FROM films f\n" +
                 "LEFT JOIN mpa m ON m.id = f.mpa_id";
 
@@ -77,7 +77,7 @@ public class FilmDbStorage implements FilmStorage {
 
     @Override
     public Optional<Film> getFilm(Long id) {
-        String sqlQuery = "SELECT * FROM films f LEFT JOIN mpa m ON m.id = f.mpa_id WHERE f.id = ?";
+        final String sqlQuery = "SELECT * FROM films f LEFT JOIN mpa m ON m.id = f.mpa_id WHERE f.id = ?";
 
         Set<Genre> genres = genreStorage.getFilmGenres(id);
         Optional<Film> film = jdbcTemplate.query(sqlQuery, new FilmRowMapper(), id)
@@ -92,21 +92,21 @@ public class FilmDbStorage implements FilmStorage {
 
     @Override
     public void putLike(Film film, User user) {
-        String sqlQuery = "INSERT INTO likes(film_id, user_id) VALUES (?, ?)";
+        final String sqlQuery = "INSERT INTO likes(film_id, user_id) VALUES (?, ?)";
 
         jdbcTemplate.update(sqlQuery, film.getId(), user.getId());
     }
 
     @Override
     public void deleteLike(Film film, User user) {
-        String sqlQuery = "DELETE FROM likes WHERE film_id = ? AND user_id = ?";
+        final String sqlQuery = "DELETE FROM likes WHERE film_id = ? AND user_id = ?";
 
         jdbcTemplate.update(sqlQuery, film.getId(), user.getId());
     }
 
     @Override
     public List<Film> getPopular(int count) {
-        String sqlQuery = "SELECT * " +
+        final String sqlQuery = "SELECT * " +
                 "FROM films AS f " +
                 "LEFT JOIN likes AS l ON f.id = l.film_id " +
                 "GROUP BY f.id " +

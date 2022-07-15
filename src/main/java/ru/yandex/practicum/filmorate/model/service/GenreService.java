@@ -16,7 +16,7 @@ import java.util.Set;
 @AllArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class GenreService {
-    GenreStorage genreStorage;
+    private GenreStorage genreStorage;
 
     public Genre getGenre(int id) {
         return genreStorage.get(id)

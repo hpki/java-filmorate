@@ -20,18 +20,18 @@ public class FriendStorageImpl implements FriendStorage {
     }
 
     public void addFriend(Long userId, Long friendId) {
-        String sqlQuery = "INSERT INTO friends(user_id, friend_id) VALUES (?, ?)";
+        final String sqlQuery = "INSERT INTO friends(user_id, friend_id) VALUES (?, ?)";
         jdbcTemplate.update(sqlQuery, userId, friendId);
     }
 
     public List<User> getFriends(Long id) {
-        String sqlQuery = "SELECT * FROM users WHERE id in(SELECT friend_id FROM friends WHERE user_id = ?)";
+        final String sqlQuery = "SELECT * FROM users WHERE id in(SELECT friend_id FROM friends WHERE user_id = ?)";
         return jdbcTemplate.query(sqlQuery, new UserRowMapper(), id);
     }
 
     @Override
     public List<User> getCommonFriends(Long id, Long otherId) {
-        String sqlQuery = "SELECT *\n" +
+        final String sqlQuery = "SELECT *\n" +
                 "FROM users\n" +
                 "WHERE ID =\n" +
                 "    (SELECT friend_id\n" +
@@ -47,7 +47,7 @@ public class FriendStorageImpl implements FriendStorage {
 
     @Override
     public void deleteFriend(Long userId, Long friendId) {
-        String sqlQuery = "DELETE FROM friends WHERE user_id = ? AND friend_id = ?";
+        final String sqlQuery = "DELETE FROM friends WHERE user_id = ? AND friend_id = ?";
         jdbcTemplate.update(sqlQuery, userId, friendId);
     }
 

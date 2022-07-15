@@ -18,7 +18,7 @@ import java.util.List;
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class GenreController {
 
-    GenreService genreService;
+    private GenreService genreService;
 
     @GetMapping("/{id}")
     public Genre getGenre(@PathVariable int id) {

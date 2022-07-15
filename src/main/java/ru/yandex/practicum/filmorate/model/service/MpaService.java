@@ -18,7 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 public class MpaService {
 
-    MpaStorage mpaStorage;
+    private MpaStorage mpaStorage;
 
     public Mpa getMpa(int id) {
         return mpaStorage.get(id)

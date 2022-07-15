@@ -23,7 +23,7 @@ public class UserDbStorage implements UserStorage {
 
     @Override
     public User update(User user) {
-        String sqlQuery = "UPDATE users\n" +
+        final String sqlQuery = "UPDATE users\n" +
                 "SET email= ?,\n" +
                 "    login = ?,\n" +
                 "    name = ?,\n" +
@@ -40,13 +40,13 @@ public class UserDbStorage implements UserStorage {
 
     @Override
     public List<User> getUsers() {
-        String sqlQuery = "SELECT * FROM users";
+        final String sqlQuery = "SELECT * FROM users";
         return jdbcTemplate.query(sqlQuery, new UserRowMapper());
     }
 
     @Override
     public Optional<User> getUser(Long id) {
-        String sqlQuery = "SELECT *\n" +
+        final String sqlQuery = "SELECT *\n" +
                 "FROM users\n" +
                 "WHERE id = ?";
         return jdbcTemplate.query(sqlQuery, new UserRowMapper(), id).stream().findFirst();
@@ -54,7 +54,7 @@ public class UserDbStorage implements UserStorage {
 
     @Override
     public User add(User user) {
-        String sqlQuery = "INSERT INTO users(email, login, name, birthday)\n" +
+        final String sqlQuery = "INSERT INTO users(email, login, name, birthday)\n" +
                 "VALUES (?, ?, ?, ?)";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();

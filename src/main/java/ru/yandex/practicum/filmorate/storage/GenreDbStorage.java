@@ -20,13 +20,13 @@ public class GenreDbStorage implements GenreStorage {
 
     @Override
     public Optional<Genre> get(int id) {
-        String sqlQuery = "SELECT * FROM genres WHERE id = ?";
+        final String sqlQuery = "SELECT * FROM genres WHERE id = ?";
         return jdbcTemplate.query(sqlQuery, new GenreRowMapper(), id).stream().findFirst();
     }
 
     @Override
     public Set<Genre> getFilmGenres(Long id){
-        String sqlQuery = "SELECT id," +
+        final String sqlQuery = "SELECT id," +
                 "       name\n" +
                 "FROM film_genres fg\n" +
                 "LEFT JOIN genres g ON g.id = fg.genre_id\n" +
@@ -36,7 +36,7 @@ public class GenreDbStorage implements GenreStorage {
 
     @Override
     public List<Genre> getAll(){
-        String sqlQuery = "SELECT * FROM genres";
+        final String sqlQuery = "SELECT * FROM genres";
         return jdbcTemplate.query(sqlQuery, new GenreRowMapper());
     }
 

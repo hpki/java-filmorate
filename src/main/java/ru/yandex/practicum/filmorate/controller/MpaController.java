@@ -17,7 +17,7 @@ import java.util.List;
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @AllArgsConstructor
 public class MpaController {
-    MpaService mpaService;
+    private MpaService mpaService;
 
     @GetMapping("/{id}")
     public Mpa getMpa(@PathVariable int id) {
