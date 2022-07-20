@@ -4,7 +4,9 @@ import lombok.*;
 
 @Getter
 @Setter
-@AllArgsConstructor
+@ToString
+@RequiredArgsConstructor
+//@AllArgsConstructor
 @Builder
 
 public class Genre {
