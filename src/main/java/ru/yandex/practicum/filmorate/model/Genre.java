@@ -2,11 +2,10 @@ package ru.yandex.practicum.filmorate.model;
 
 import lombok.*;
 
-//@Getter
-//@Setter
+@Getter
+@Setter
 //@ToString
-//@RequiredArgsConstructor
-@Data
+//@Data
 @AllArgsConstructor
 @Builder
 
