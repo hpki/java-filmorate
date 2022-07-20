@@ -5,8 +5,8 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
-//@AllArgsConstructor
+//@RequiredArgsConstructor
+@AllArgsConstructor
 @Builder
 
 public class Genre {
